@@ -5,6 +5,6 @@ public class Factorial {
         if (number < 2){
             return 1;
         }
-        return number;
+        return number * factorial(number - 1);
     }
 }

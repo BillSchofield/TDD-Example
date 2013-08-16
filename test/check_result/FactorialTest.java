@@ -22,4 +22,9 @@ public class FactorialTest {
     public void shouldReturnOneWhenNumberIsZero(){
         assertThat(factorial(0), is(1));
     }
+
+    @Test
+    public void shouldReturnSixWhenNumberIsThree(){
+        assertThat(factorial(3), is(6));
+    }
 }
