@@ -17,4 +17,9 @@ public class FactorialTest {
     public void shouldReturnTwoWhenNumberIsTwo(){
         assertThat(factorial(2), is(2));
     }
+
+    @Test
+    public void shouldReturnOneWhenNumberIsZero(){
+        assertThat(factorial(0), is(1));
+    }
 }
