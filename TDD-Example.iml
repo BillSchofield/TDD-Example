@@ -17,6 +17,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="org.mockito:mockito-all:1.9.5" level="application" />
+    <orderEntry type="library" name="com.google.guava:guava:14.0.1" level="application" />
   </component>
 </module>
 
