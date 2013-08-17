@@ -1,6 +1,7 @@
 package check_interaction;
 
 import java.io.PrintStream;
+import java.util.List;
 
 public class FilePrinter {
     private final FileLineReader fileLineReader;
@@ -12,6 +13,9 @@ public class FilePrinter {
     }
 
     public void print() {
-        printStream.println(fileLineReader.lines().get(0));
+        List<String> lines = fileLineReader.lines();
+        for (String line : lines){
+            printStream.println(line);
+        }
     }
 }

@@ -4,8 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
-import java.util.Arrays;
 
+import static java.util.Arrays.asList;
 import static org.mockito.Mockito.*;
 
 public class FilePrinterTest {
@@ -37,18 +37,18 @@ public class FilePrinterTest {
 
     @Test
     public void shouldPrintTwoLinesWhenThereAreTwoLinesInTheFile(){
-        // Given a filePrinter and a file with single string in it
+        // Given a filePrinter and a file with two lines
         fileContains(something, somethingElse);
 
         // When I print the file
         filePrinter.print();
 
-        // Then I print the string from the file
+        // Then I print the lines from the file
         verify(printStream).println(something);
         verify(printStream).println(somethingElse);
     }
 
     private void fileContains(String... lines) {
-        when(fileLineReader.lines()).thenReturn(Arrays.asList(lines));
+        when(fileLineReader.lines()).thenReturn(asList(lines));
     }
 }
