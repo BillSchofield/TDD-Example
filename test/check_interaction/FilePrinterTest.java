@@ -3,14 +3,15 @@ package check_interaction;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 
-import static java.util.Arrays.asList;
 import static org.mockito.Mockito.*;
 
 public class FilePrinterTest {
 
-    private FileLineReader fileLineReader;
+    private BufferedReader reader;
     private final static String something = "Something";
     private final static String somethingElse = "Something Else";
     private PrintStream printStream;
@@ -18,37 +19,32 @@ public class FilePrinterTest {
 
     @Before
     public void setUp() throws Exception {
-        fileLineReader = mock(FileLineReader.class);
+        reader = mock(BufferedReader.class);
         printStream = mock(PrintStream.class);
-        filePrinter = new FilePrinter(fileLineReader, printStream);
+        filePrinter = new FilePrinter(reader, printStream);
     }
 
     @Test
-    public void shouldPrintSomethingWhenThereIsSomethingInTheFile(){
-        // Given a filePrinter and a file with single string in it
-        fileContains(something);
+    public void shouldPrintSomethingWhenThereIsSomethingInTheFile() throws IOException {
+        when(reader.readLine())
+                .thenReturn(something)
+                .thenReturn(null);
 
-        // When I print the file
         filePrinter.print();
 
-        // Then I print the string from the file
         verify(printStream).println(something);
     }
 
     @Test
-    public void shouldPrintTwoLinesWhenThereAreTwoLinesInTheFile(){
-        // Given a filePrinter and a file with two lines
-        fileContains(something, somethingElse);
+    public void shouldPrintTwoLinesWhenThereAreTwoLinesInTheFile() throws IOException {
+        when(reader.readLine())
+                .thenReturn(something)
+                .thenReturn(somethingElse)
+                .thenReturn(null);
 
-        // When I print the file
         filePrinter.print();
 
-        // Then I print the lines from the file
         verify(printStream).println(something);
         verify(printStream).println(somethingElse);
-    }
-
-    private void fileContains(String... lines) {
-        when(fileLineReader.lines()).thenReturn(asList(lines));
     }
 }

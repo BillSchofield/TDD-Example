@@ -1,20 +1,24 @@
 package check_interaction;
 
-import java.io.PrintStream;
-import java.util.List;
+import java.io.*;
 
 public class FilePrinter {
-    private final FileLineReader fileLineReader;
+    private final BufferedReader reader;
     private final PrintStream printStream;
 
-    public FilePrinter(FileLineReader fileLineReader, PrintStream printStream) {
-        this.fileLineReader = fileLineReader;
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("input.txt"));
+        new FilePrinter(reader, System.out).print();
+    }
+
+    public FilePrinter(BufferedReader reader, PrintStream printStream) {
+        this.reader = reader;
         this.printStream = printStream;
     }
 
-    public void print() {
-        List<String> lines = fileLineReader.lines();
-        for (String line : lines){
+    public void print() throws IOException {
+        String line;
+        while((line = reader.readLine()) != null){
             printStream.println(line);
         }
     }
