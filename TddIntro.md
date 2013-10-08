@@ -18,7 +18,8 @@ This is where we create and arrange the objects that are required to take the ac
 _Take the Action_  
 Since we use unit tests to test a small amount of  behavior, we need to use that behavior. That means calling a method on the class we are testing. 
 
-_Verify the result_
+_Verify the result_  
+This is the test part of the unit test. Since we expect something to have changed because the action took place, we have to test it after the action happens. 
 
 **Make the test pass**  
 **Refactor**  
