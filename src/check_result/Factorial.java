@@ -1,10 +1,13 @@
 package check_result;
 
 public class Factorial {
-    public Integer of(Integer number) {
-        if (number < 2){
+    public Integer compute(Integer number) {
+        if (number < 0){
+            throw new IllegalArgumentException();
+        }
+        if (number == 0){
             return 1;
         }
-        return number * of(number - 1);
+        return number * compute(number - 1);
     }
 }
